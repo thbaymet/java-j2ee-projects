@@ -13,13 +13,34 @@
 	<h:head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <title><ui:insert name="title" /></title>
+        <link rel="shortcut icon" href="${request.contextPath}/resources/css/images/favicon.ico"/>
+        <link rel="stylesheet" type="text/css" href="${request.contextPath}/resources/css/style.css"/>
 	</h:head>
 
 
 	<h:body>
-		<h1>Webflow Facelets +
-			<ui:insert name="body"/>
-		</h1>
+		 
+		<p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
+		 
+		<p:dialog widgetVar="statusDialog" modal="true" draggable="false" closable="true" resizable="false" showHeader="false">
+		    <p:graphicImage name="${request.contextPath}/resources/css/images/ajaxloadingbar.gif" />
+		</p:dialog>
+	
+		<div id="container">
+		
+			<div id="header">
+				<ui:insert name="header"/>
+			</div>
+			
+			<div id="content">
+				<ui:insert name="content"/>
+			</div>
+			
+			<div id="footer">
+				<ui:insert name="footer"/>
+			</div>
+		</div>
+		
 	</h:body>
 
 </f:view>
