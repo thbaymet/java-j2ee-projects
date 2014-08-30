@@ -5,5 +5,14 @@
         
 	<import resource="datasource-config.xml"/>
 	<import resource="webflow-config.xml"/>
+	
+	
+	<!-- DAO declarations -->
+	<bean id="userDao" class="com.yunus.org.dao.UserJpaDao"/>
+	
+	<!-- Services declarations -->
+	<bean id="userService" class="com.yunus.org.services.impl.UserServiceImpl">
+		<property name="userDao" ref="userDao"/>
+	</bean>
         
 </beans>

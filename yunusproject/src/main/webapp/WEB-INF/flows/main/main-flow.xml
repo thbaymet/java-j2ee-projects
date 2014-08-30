@@ -2,9 +2,20 @@
 <flow xmlns="http://www.springframework.org/schema/webflow"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/webflow
-        http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
+        http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd" >
 
-	<view-state id="welcome">
+
+	<var name="user" class="com.yunus.org.domain.UserEntity"/>
+	
+	<view-state id="welcome" view="welcome.xhtml">
+		<transition on="newUser" to="signUp"></transition>
+	</view-state>
+	
+	<view-state id="signUp" view="signUp.xhtml" model="user">
+		<transition on="backToSignIn" to="welcome"></transition>
+		<transition on="confirmSignUp" to="welcome">
+			<evaluate expression="userService.createUser(user)"></evaluate>
+		</transition>
 	</view-state>
 
 </flow>
