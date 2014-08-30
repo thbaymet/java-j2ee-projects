@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/templates/general.xhtml">
+                
+                
+	<ui:define name="title">
+		<h:outputText value="Sign Up"/>
+	</ui:define>
+	
+	<ui:define name="header">
+		<h1>
+		<h:outputText value="Please Sign Up"/>
+		</h1>
+	</ui:define>
+	
+	<ui:define name="content">
+		<h:form id="signUpForm">
+			<p:fieldset styleClass="fieldset" legend="Registration Form">
+				
+				<p:messages id="messages"></p:messages>
+					
+				<h:panelGrid id="regPanelGrid" cellspacing="8" columns="3">
+				
+					
+					<h:panelGroup>
+						<h:outputLabel value="First Name :"></h:outputLabel>
+						<h:outputText style="color:red;" value="*"></h:outputText>
+					</h:panelGroup>
+					
+					<p:inputText id="firstName" required="true" value="#{user.firstName}" label="First Name" title="Enter your first name">
+						<f:validateLength minimum="2"></f:validateLength>
+					</p:inputText>
+					<p:tooltip for="firstName" styleClass="tooltip" showEvent="focus" hideEvent="blur"></p:tooltip>
+					
+					<h:panelGroup>
+						<h:outputLabel value="Last Name :"></h:outputLabel>
+						<h:outputText style="color:red;" value="*"></h:outputText>
+					</h:panelGroup>
+					
+					<p:inputText id="lastName" required="true" value="#{user.lastName}" label="Last Name" title="Enter your first name">
+						<f:validateLength minimum="2"></f:validateLength>
+					</p:inputText>
+					<p:tooltip for="lastName" styleClass="tooltip" showEvent="focus" hideEvent="blur"></p:tooltip>
+					
+				
+					<h:panelGroup>
+						<h:outputLabel value="User Name :"></h:outputLabel>
+						<h:outputText style="color:red;" value="*"></h:outputText>
+					</h:panelGroup>
+					
+					<p:inputText id="userName" required="true" value="#{user.userName}" label="User Name" title="Enter your first name">
+						<f:validateLength minimum="2"></f:validateLength>
+					</p:inputText>
+					<p:tooltip for="userName" styleClass="tooltip" showEvent="focus" hideEvent="blur"></p:tooltip>
+					
+					<h:panelGroup>
+						<h:outputLabel value="Enter Password :"></h:outputLabel>
+						<h:outputText style="color:red" value="* "></h:outputText>
+					</h:panelGroup>
+					<p:password id="password1" value="#{user.password}" required="true" label="Password" feedback="true" match="password2" title="Please enter a password">
+						<f:validateLength minimum="2"></f:validateLength>
+					</p:password>
+					<h:outputText value=""></h:outputText>
+					
+					<h:panelGroup>
+						<h:outputLabel value="Repeat Password :"></h:outputLabel>
+						<h:outputText style="color:red" value="* "></h:outputText>
+					</h:panelGroup>
+					<p:password id="password2" required="true" label="Password" feedback="true" title="Please enter a password">
+						<f:validateLength minimum="2"></f:validateLength>
+					</p:password>
+					<h:outputText value=""></h:outputText>
+					
+					
+					<p:commandButton id="backToSignIn" action="backToSignIn" immediate="true" ajax="false" icon="ui-icon-arrowreturnthick-1-w" value="Back to sign in"></p:commandButton>
+					<p:commandButton id="submitButton" action="confirmSignUp" update="regPanelGrid, messages" icon="ui-icon-check" value="Sign Up"></p:commandButton>
+				</h:panelGrid>
+			</p:fieldset>
+		</h:form>
+	</ui:define>
+                
+                
+</ui:composition>

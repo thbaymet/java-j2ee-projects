@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
@@ -23,7 +22,7 @@
 		<h:form id="loginForm">
 			<p:fieldset styleClass="fieldset" legend="Authentification Form">
 				
-				<p:messages id="messages"></p:messages>
+				<p:messages id="messages" autoUpdate="true"></p:messages>
 					
 				<h:panelGrid id="loginPanelGrid" cellspacing="8" columns="3">
 				
@@ -42,12 +41,13 @@
 					</h:panelGroup>
 					<p:password id="password" required="true" label="Password" title="Please enter a password"></p:password>
 					<p:tooltip for="password" styleClass="tooltip" showEvent="focus" hideEvent="blur"></p:tooltip>
-					
-					<p:commandButton id="newUserButton" aciton="newUser" update="loginPanelGrid, messages" icon="ui-icon-plus" value="Sign Up"></p:commandButton>
+				
+					<p:commandButton  id="newUserButton" action="newUser" immediate="true" ajax="false" icon="ui-icon-plus" value="Sign Up"></p:commandButton>
 					<p:commandButton id="submitButton" action="signIn" update="loginPanelGrid, messages" icon="ui-icon-check" value="Sign in"></p:commandButton>
 				</h:panelGrid>
 			</p:fieldset>
 		</h:form>
+
 	</ui:define>
                 
                 
