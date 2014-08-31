@@ -11,8 +11,14 @@
 	<ui:define name="header"><h1><h:outputText value="My Account home"/></h1></ui:define>
 
 	<ui:define name="content">
+	
+		<f:metadata>
+			<f:event listener="#{uiUtils.greetOnViewLoad}" type="postAddToView" update="growlMessages"></f:event>
+			<f:attribute name="firstName" value="#{user.firstName}"></f:attribute>
+			<f:attribute name="lastName" value="#{user.lastName}"></f:attribute>
+		</f:metadata>
 		
-		<h1>Account for firstName and lastName</h1>
+		<h1>Account for #{user.firstName} #{user.lastName}</h1>
 		
 	</ui:define>
 

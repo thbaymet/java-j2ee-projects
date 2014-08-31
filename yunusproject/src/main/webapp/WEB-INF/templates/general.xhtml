@@ -20,9 +20,28 @@
 
 	<h:body>
 		 
-
+		<p:ajaxStatus onstart="statusDialog.show();" onsuccess="statusDialog.hide();" />
+        <p:dialog modal="true" widgetVar="statusDialog" header="Processing..." draggable="true" closable="false">
+                <p:graphicImage value="/css/images/ajaxloadingbar.gif" />
+        </p:dialog>
+        
+        <p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
+		<p:dialog widgetVar="statusDialog" modal="true" draggable="false" closable="false" resizable="false" header="Processing...">
+		    <p:graphicImage name="/css/images/ajaxloadingbar.gif" />
+		</p:dialog>
+        
+        <p:growl id="growlMessages" showDetail="false" sticky="false" life="13000" />
 	
 		<div id="container">
+		
+			<div id="greeting">
+				<c:if test="${not empty currentUser.name}">
+					<b>Welcome, </b>${user.firstName} ${user.lastName} | 
+					<a href="${request.contextPath}/app/logout">
+						<img alt="" title="Logout" src="${request.contextPath}/resources/css/images/logout.png"/>
+					</a>
+				</c:if>
+			</div>
 		
 			<div id="header">
 				<ui:insert name="header"/>

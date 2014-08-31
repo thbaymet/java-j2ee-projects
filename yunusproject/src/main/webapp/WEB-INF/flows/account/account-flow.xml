@@ -5,6 +5,13 @@
         http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
 
 	<secured attributes="ROLE_USER"/>
+	
+	<var name="uiUtils" class="com.yunus.org.ui.utils.UIUtils"/>
+	
+	<on-start>
+		<evaluate expression="userService.loadUserEntityByUsername(currentUser.name)" 
+			result="flowScope.user"></evaluate>
+	</on-start>
 
 	<view-state id="home" view="accountHome.xhtml">
 	</view-state>
