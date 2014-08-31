@@ -3,26 +3,19 @@
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            xmlns:tx="http://www.springframework.org/schema/tx"
            xmlns:context="http://www.springframework.org/schema/context"
+           xmlns:jdbc="http://www.springframework.org/schema/jdbc"
            xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd         
                         http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+                        http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc.xsd
                         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd">
                         
-                 
-        <!-- 
-        <context:property-placeholder location="classpath:datasource.properties" />
-        <bean id="dataSource" class="oracle.jdbc.pool.OracleDataSource" destroy-method="close">
-                <property name="connectionCachingEnabled" value="true" />
-                <property name="URL" value="${url}" />
-                <property name="user" value="${user}" />
-                <property name="password" value="${password}" />
-        </bean>
-         -->       
+		<context:property-placeholder location="classpath:jdbc.properties" />
         
         <bean name="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		    <property name="driverClassName" value="com.mysql.jdbc.Driver" />
-		    <property name="url" value="jdbc:mysql://localhost:3306/mb_db_yunus" />
-		    <property name="username" value="root" />
-		    <property name="password" value="baymet" />
+		    <property name="url" value="${jdbc.url}" />
+		    <property name="username" value="${jdbc.username}" />
+		    <property name="password" value="${jdbc.password}" />
 		</bean>                 
   		
 		<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
@@ -36,20 +29,6 @@
 		    </property>
 		</bean>
 		    
-        <!-- 
-        
-        <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
-                <property name="jpaVendorAdapter">
-                        <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
-                                <property name="showSql" value="true" />
-                                <property name="generateDdl" value="true" />
-                                <property name="databasePlatform" value="org.hibernate.dialect.Oracle10gDialect" />
-                        </bean>
-                </property>
-                
-                <property name="dataSource" ref="dataSource" />
-        </bean>
-         -->
         
         <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
                 <property name="dataSource" ref="dataSource" />
@@ -59,7 +38,34 @@
         <tx:annotation-driven transaction-manager="transactionManager" />
 
         <bean class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor" />
+        
+
 		<!-- 
 		 -->
+		 
+		 
+		 
+        <!-- 
+        
+        
+        <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+                <property name="jpaVendorAdapter">
+                        <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+                                <property name="showSql" value="true" />
+                                <property name="generateDdl" value="true" />
+                                <property name="databasePlatform" value="org.hibernate.dialect.Oracle10gDialect" />
+                        </bean>
+                </property>
+                <property name="dataSource" ref="dataSource" />
+        </bean>
+        
+        
+        <bean id="dataSource" class="oracle.jdbc.pool.OracleDataSource" destroy-method="close">
+                <property name="connectionCachingEnabled" value="true" />
+                <property name="URL" value="${url}" />
+                <property name="user" value="${user}" />
+                <property name="password" value="${password}" />
+        </bean>
+         --> 
 </beans>
 

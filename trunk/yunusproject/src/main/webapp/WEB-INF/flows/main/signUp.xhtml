@@ -21,63 +21,77 @@
 		<h:form id="signUpForm">
 			<p:fieldset styleClass="fieldset" legend="Registration Form">
 				
-				<p:messages id="messages"></p:messages>
+				<p:focus></p:focus>
+				
+				<p:messages id="messages" globalOnly="true"></p:messages>
 					
 				<h:panelGrid id="regPanelGrid" cellspacing="8" columns="3">
 				
 					
 					<h:panelGroup>
-						<h:outputLabel value="First Name :"></h:outputLabel>
+						<h:outputLabel value="#{Message['label.firstname']} :"></h:outputLabel>
 						<h:outputText style="color:red;" value="*"></h:outputText>
 					</h:panelGroup>
 					
-					<p:inputText id="firstName" required="true" value="#{user.firstName}" label="First Name" title="Enter your first name">
+					<p:inputText id="firstName" required="true" value="#{user.firstName}" label="#{Message['label.firstname']}" title="Enter your first name">
 						<f:validateLength minimum="2"></f:validateLength>
+						<p:ajax event="keyup" update="firstNameMsg" global="false"/>
 					</p:inputText>
-					<p:tooltip for="firstName" styleClass="tooltip" showEvent="focus" hideEvent="blur"></p:tooltip>
+					<h:panelGroup>
+						<p:message id="firstNameMsg" for="firstName"/>
+						<p:tooltip for="firstName" styleClass="tooltip" showEvent="focus" hideEvent="blur"></p:tooltip>
+					</h:panelGroup>
 					
 					<h:panelGroup>
-						<h:outputLabel value="Last Name :"></h:outputLabel>
+						<h:outputLabel value="#{Message['label.lastname']} :"></h:outputLabel>
 						<h:outputText style="color:red;" value="*"></h:outputText>
 					</h:panelGroup>
 					
-					<p:inputText id="lastName" required="true" value="#{user.lastName}" label="Last Name" title="Enter your first name">
+					<p:inputText id="lastName" required="true" value="#{user.lastName}" label="#{Message['label.lastname']}" title="Enter your first name">
 						<f:validateLength minimum="2"></f:validateLength>
+						<p:ajax event="keyup" update="lastNameMsg" global="false"/>
 					</p:inputText>
-					<p:tooltip for="lastName" styleClass="tooltip" showEvent="focus" hideEvent="blur"></p:tooltip>
-					
+					<h:panelGroup>
+						<p:message id="lastNameMsg" for="lastName"/>
+						<p:tooltip for="lastName" styleClass="tooltip" showEvent="focus" hideEvent="blur"></p:tooltip>
+					</h:panelGroup>
 				
 					<h:panelGroup>
-						<h:outputLabel value="User Name :"></h:outputLabel>
+						<h:outputLabel value="#{Message['label.username']} :"></h:outputLabel>
 						<h:outputText style="color:red;" value="*"></h:outputText>
 					</h:panelGroup>
 					
-					<p:inputText id="userName" required="true" value="#{user.userName}" label="User Name" title="Enter your first name">
+					<p:inputText id="userName" required="true" value="#{user.userName}" label="#{Message['label.username']}" title="Enter your first name">
 						<f:validateLength minimum="2"></f:validateLength>
+						<p:ajax event="keyup" update="userNameMsg" global="false" listener="#{userService.checkAvailable}"/>
 					</p:inputText>
-					<p:tooltip for="userName" styleClass="tooltip" showEvent="focus" hideEvent="blur"></p:tooltip>
+					<h:panelGroup>
+						<p:message id="userNameMsg" for="userName"/>
+						<p:tooltip for="userName" styleClass="tooltip" showEvent="focus" hideEvent="blur"></p:tooltip>
+					</h:panelGroup>
+					
 					
 					<h:panelGroup>
-						<h:outputLabel value="Enter Password :"></h:outputLabel>
+						<h:outputLabel value="#{Message['label.password']} :"></h:outputLabel>
 						<h:outputText style="color:red" value="* "></h:outputText>
 					</h:panelGroup>
-					<p:password id="password1" value="#{user.password}" required="true" label="Password" feedback="true" match="password2" title="Please enter a password">
+					<p:password id="password1" value="#{user.password}" required="true" label="#{Message['label.password']}" feedback="true" match="password2" title="Please enter a password">
 						<f:validateLength minimum="2"></f:validateLength>
 					</p:password>
-					<h:outputText value=""></h:outputText>
+					<p:message id="password1Msg" for="password1"/>
 					
 					<h:panelGroup>
-						<h:outputLabel value="Repeat Password :"></h:outputLabel>
+						<h:outputLabel value="#{Message['label.repeatPassword']} :"></h:outputLabel>
 						<h:outputText style="color:red" value="* "></h:outputText>
 					</h:panelGroup>
-					<p:password id="password2" required="true" label="Password" feedback="true" title="Please enter a password">
+					<p:password id="password2" required="true" label="#{Message['label.repeatPassword']}" feedback="true" title="Please enter a password">
 						<f:validateLength minimum="2"></f:validateLength>
 					</p:password>
-					<h:outputText value=""></h:outputText>
+					<p:message id="password2Msg" for="password2"/>
 					
 					
-					<p:commandButton id="backToSignIn" action="backToSignIn" immediate="true" ajax="false" icon="ui-icon-arrowreturnthick-1-w" value="Back to sign in"></p:commandButton>
-					<p:commandButton id="submitButton" action="confirmSignUp" update="regPanelGrid, messages" icon="ui-icon-check" value="Sign Up"></p:commandButton>
+					<p:commandButton id="backToSignIn" action="backToSignIn" immediate="true" ajax="false" icon="ui-icon-arrowreturnthick-1-w" value="#{Message['button.login']}"></p:commandButton>
+					<p:commandButton id="submitButton" action="confirmSignUp" update="regPanelGrid, messages" icon="ui-icon-check" value="#{Message['button.signUp']}"></p:commandButton>
 				</h:panelGrid>
 			</p:fieldset>
 		</h:form>

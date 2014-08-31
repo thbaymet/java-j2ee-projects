@@ -13,31 +13,41 @@
 	
 	
 	<ui:define name="content">
+				
 		<h:form id="loginForm">
 			<p:fieldset styleClass="fieldset" legend="Authentification Form">
 				
-				<p:messages id="messages" autoUpdate="true"></p:messages>
+				<p:focus/>
+				
+				
+				<p:messages id="messages" globalOnly="true"></p:messages>
 					
 				<h:panelGrid id="loginPanelGrid" cellspacing="8" columns="3">
 				
 					
 					<h:panelGroup>
-						<h:outputLabel value="User Name :"></h:outputLabel>
+						<h:outputLabel value="#{Message['label.username']} :"></h:outputLabel>
 						<h:outputText style="color:red;" value="*"></h:outputText>
 					</h:panelGroup>
 					
-					<p:inputText id="userName" required="true" value="" label="User Name" title="Enter your user name"></p:inputText>
-					<p:tooltip for="userName" styleClass="tooltip" showEvent="focus" hideEvent="blur"></p:tooltip>
+					<p:inputText id="userName" required="true" value="#{user.userName}" label="#{Message['label.username']}" title="Enter your user name"></p:inputText>
+					<h:panelGroup>
+						<p:message id="userNameMsg" for="userName"></p:message>
+						<p:tooltip for="userName" styleClass="tooltip" showEvent="focus" hideEvent="blur"></p:tooltip>
+					</h:panelGroup>
 				
 					<h:panelGroup>
-						<h:outputLabel value="Password :"></h:outputLabel>
+						<h:outputLabel value="#{Message['label.password']} :"></h:outputLabel>
 						<h:outputText style="color:red" value="*"></h:outputText>
 					</h:panelGroup>
-					<p:password id="password" required="true" label="Password" title="Please enter a password"></p:password>
-					<p:tooltip for="password" styleClass="tooltip" showEvent="focus" hideEvent="blur"></p:tooltip>
+					<p:password id="password" required="true" value="#{user.password}" label="#{Message['label.password']}" title="Please enter a password"></p:password>
+					<h:panelGroup>
+						<p:message id="passwordMsg" for="password"></p:message>
+						<p:tooltip for="password" styleClass="tooltip" showEvent="focus" hideEvent="blur"></p:tooltip>
+					</h:panelGroup>
 				
-					<p:commandButton  id="newUserButton" action="newUser" immediate="true" ajax="false" icon="ui-icon-plus" value="Sign Up"></p:commandButton>
-					<p:commandButton id="submitButton" action="signIn" update="loginPanelGrid, messages" icon="ui-icon-check" value="Sign in"></p:commandButton>
+					<p:commandButton id="submitButton" action="confirmSignIn" update="loginPanelGrid, messages" icon="ui-icon-check" value="#{Message['button.login']}"></p:commandButton>
+					<p:commandButton  id="newUserButton" action="newUser" immediate="true" ajax="false" icon="ui-icon-plus" value="#{Message['button.signUp']}"></p:commandButton>
 				</h:panelGrid>
 			</p:fieldset>
 		</h:form>
