@@ -7,8 +7,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
-import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
-import org.springframework.security.authentication.encoding.PasswordEncoder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.yunus.org.commons.domain.BaseEntity;
 
@@ -90,8 +90,8 @@ public class UserEntity extends BaseEntity {
 	 * @param password the password to set
 	 */
 	public void setPassword(String password) {
-		PasswordEncoder passwordEncoder = new Md5PasswordEncoder();
-		String hashedPassword = passwordEncoder.encodePassword(password, null);
+		PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+		String hashedPassword = passwordEncoder.encode(password);
 		
 		this.password = hashedPassword;
 	}
