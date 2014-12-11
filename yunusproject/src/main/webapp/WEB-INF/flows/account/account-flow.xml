@@ -14,6 +14,7 @@
 	</on-start>
 
 	<view-state id="home" view="accountHome.xhtml">
+		<transition on="addStudent" to="create"></transition>
 	</view-state>
 
 </flow>

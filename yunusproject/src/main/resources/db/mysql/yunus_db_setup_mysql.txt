@@ -1,9 +1,8 @@
-CREATE TABLE IF NOT EXISTS mb_user (
-  	id int(11) NOT NULL AUTO_INCREMENT,
-  	firstName varchar(20) COLLATE latin1_general_ci DEFAULT NULL,
-  	lastName varchar(20) COLLATE latin1_general_ci DEFAULT NULL,
-  	userName varchar(30) COLLATE latin1_general_ci DEFAULT NULL,
-  	password varchar(40) COLLATE latin1_general_ci DEFAULT NULL,
-  	PRIMARY KEY (id),
-  	UNIQUE KEY mb_user_username_uk (userName)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
+Run the following commands to create mysql database. 
+Tables will be auto created.
+
+CREATE DATABASE `mb_db_yunus` CHARACTER SET utf8 COLLATE utf8_general_ci;
+GRANT ALL ON `mb_db_yunus`.* TO `username`@localhost IDENTIFIED BY 'password';
+FLUSH PRIVILEGES;
+
+Don't forget to update username/password in jdbc.properties file. 
