@@ -12,6 +12,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.event.AjaxBehaviorEvent;
 
+import org.apache.log4j.Logger;
 import org.primefaces.component.inputtext.InputText;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -34,6 +35,8 @@ import com.yunus.org.services.UserService;
 public class UserServiceImpl implements UserService, UserDetailsService {
 
 	private UserDao userDao;
+	
+	static Logger log = Logger.getLogger(UserServiceImpl.class.getName());
 	
 	/**
 	 * 
