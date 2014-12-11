@@ -13,7 +13,7 @@ import com.yunus.org.commons.domain.BaseEntity;
  *
  */
 @Entity
-@Table(name="mb_teacher")
+@Table(name = "mb_teacher")
 public class TeacherEntity extends BaseEntity {
 
 	private static final long serialVersionUID = -8872188226093408284L;
