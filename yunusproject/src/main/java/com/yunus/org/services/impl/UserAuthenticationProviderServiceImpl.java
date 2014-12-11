@@ -32,6 +32,8 @@ public class UserAuthenticationProviderServiceImpl implements
 	 */
 	public boolean processUserAuthentication(UserEntity user) {
 		
+		
+		
 		try {
 			Authentication request = new UsernamePasswordAuthenticationToken(user.getUserName(), user.getPassword());
 			Authentication result = authenticationManager.authenticate(request);
