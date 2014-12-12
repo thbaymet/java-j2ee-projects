@@ -9,23 +9,24 @@ body {
 #container {
 	width: 96%;
 	margin: 0 auto;
-	padding: 4px;
 }
 
 #header {
 	margin: 5px;
-	padding: 10px;
 	border: 1px dashed grey;
 }
 
 #content {
 	margin: 5px;
-	padding: 10px;
-	border: 1px dashed green;
 }
 
 #footer {
-	margin: 5px;
-	padding: 10px;
-	border: 1px dashed blue;
+	margin-top: 40px;
+	border-top: 1px solid black;
+}
+
+#footer address {
+	font-style: normal;
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
 }
