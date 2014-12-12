@@ -3,6 +3,8 @@
  */
 package com.yunus.org.domain;
 
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
@@ -25,6 +27,8 @@ public class StudentEntity extends BaseEntity {
 	private String address;
 	
 	private int type;
+	
+	private Date birthday;
 
 	/**
 	 * @return the firstName
@@ -80,6 +84,20 @@ public class StudentEntity extends BaseEntity {
 	 */
 	public void setType(int type) {
 		this.type = type;
+	}
+
+	/**
+	 * @return the birthday
+	 */
+	public Date getBirthday() {
+		return birthday;
+	}
+
+	/**
+	 * @param birthday the birthday to set
+	 */
+	public void setBirthday(Date birthday) {
+		this.birthday = birthday;
 	}
 
 }
