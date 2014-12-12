@@ -65,6 +65,27 @@
 						<p:tooltip for="address" styleClass="tooltip" showEvent="focus" hideEvent="blur"></p:tooltip>
 					</h:panelGroup>
 					
+					
+					
+					<h:panelGroup>
+						<h:outputLabel value="#{Message['label.type']} :"></h:outputLabel>
+						<h:outputText style="" value=""></h:outputText>
+					</h:panelGroup>
+					
+					<h:panelGroup>					
+				        <p:selectOneRadio id="type" value="#{student.type}">
+				            <f:selectItem itemLabel="New" itemValue="0"/>
+				            <f:selectItem itemLabel="Pre" itemValue="1" />
+				            <f:selectItem itemLabel="Archived" itemValue="2" />
+				        </p:selectOneRadio>
+					</h:panelGroup>
+					
+					<h:panelGroup>
+						<p:message id="typeMsg" for="type"/>
+						<p:tooltip for="type" styleClass="tooltip" showEvent="focus" hideEvent="blur"></p:tooltip>
+					</h:panelGroup>
+					
+					
 					<p:commandButton action="cancel" immediate="true" ajax="false" icon="ui-icon-arrowreturnthick-1-w" value="#{Message['button.cancel']}"></p:commandButton>
 					<p:commandButton action="confirm" update="regPanelGrid, messages" icon="ui-icon-check" value="#{Message['button.save']}"></p:commandButton>
 		   

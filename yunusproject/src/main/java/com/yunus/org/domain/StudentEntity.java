@@ -23,6 +23,8 @@ public class StudentEntity extends BaseEntity {
 	private String lastName;
 	
 	private String address;
+	
+	private int type;
 
 	/**
 	 * @return the firstName
@@ -64,6 +66,20 @@ public class StudentEntity extends BaseEntity {
 	 */
 	public void setAddress(String address) {
 		this.address = address;
+	}
+
+	/**
+	 * @return the type
+	 */
+	public int getType() {
+		return type;
+	}
+
+	/**
+	 * @param type the type to set
+	 */
+	public void setType(int type) {
+		this.type = type;
 	}
 
 }
