@@ -19,6 +19,6 @@ public interface StudentService {
 	
 	boolean deleteStudent(StudentEntity entity);
 	
-	List<StudentEntity> getAllStudent();
+	List<StudentEntity> list();
 
 }

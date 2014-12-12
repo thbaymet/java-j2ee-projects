@@ -32,7 +32,7 @@ public class StudentServiceImpl implements StudentService {
 		return true;
 	}
 
-	public List<StudentEntity> getAllStudent() {
+	public List<StudentEntity> list() {
 		List<StudentEntity> entities = null;
 		entities = studentDao.findAll();
 		return entities;
