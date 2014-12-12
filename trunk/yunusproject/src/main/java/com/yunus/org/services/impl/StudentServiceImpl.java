@@ -17,17 +17,17 @@ public class StudentServiceImpl implements StudentService {
 	
 	private StudentDao studentDao;
 
-	public boolean createStudent(StudentEntity entity) {
+	public boolean create(StudentEntity entity) {
 		studentDao.save(entity);
 		return true;
 	}
 
-	public boolean updateStudent(StudentEntity entity) {
+	public boolean update(StudentEntity entity) {
 		studentDao.update(entity);
 		return true;
 	}
 
-	public boolean deleteStudent(StudentEntity entity) {
+	public boolean delete(StudentEntity entity) {
 		studentDao.delete(entity);
 		return true;
 	}

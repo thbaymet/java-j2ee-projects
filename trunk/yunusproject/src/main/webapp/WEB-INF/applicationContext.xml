@@ -11,6 +11,7 @@
 	<!-- DAO declarations -->
 	<bean id="userDao" class="com.yunus.org.dao.UserJpaDao" />
 	<bean id="studentDao" class="com.yunus.org.dao.StudentJpaDao" />
+	<bean id="teacherDao" class="com.yunus.org.dao.TeacherJpaDao"/>
 
 
 	<!-- Services declarations -->
@@ -19,6 +20,9 @@
 	</bean>
 	<bean id="studentService" class="com.yunus.org.services.impl.StudentServiceImpl">
 		<property name="studentDao" ref="studentDao" />
+	</bean>
+	<bean id="teacherService" class="com.yunus.org.services.impl.TeacherServiceImpl">
+		<property name="teacherDao" ref="teacherDao"></property>
 	</bean>
 
 
