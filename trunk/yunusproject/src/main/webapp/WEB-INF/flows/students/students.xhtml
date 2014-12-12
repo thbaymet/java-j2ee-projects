@@ -20,23 +20,30 @@
 	<ui:define name="content">
 	
 		<h:form>
-		                
+			
 		    <p:dataTable var="student" value="#{dtStudentsView.students}" widgetVar="studentsTable"
-		                 emptyMessage="No student found with given criteria">
-		 
-		        <p:column headerText="Id">
+		                 emptyMessage="No student found with given criteria" filteredValue="#{dtStudentsView.filteredStudents}">
+
+				<f:facet name="header">
+		            <p:outputPanel style="margin:5px 0;">
+		                <h:outputText value="Search all fields:"/>
+		                <p:inputText id="globalFilter" onkeyup="PF('studentsTable').filter()" style="width:200px;" placeholder="Enter keyword"/>
+		            </p:outputPanel>
+		        </f:facet>
+ 
+		        <p:column filter="true" filterBy="#{student.id}" headerText="Id" sortBy="#{student.id}">
 		            <h:outputText value="#{student.id}" />
 		        </p:column>
 		 
-		        <p:column headerText="#{Message['label.firstname']}">
+		        <p:column filter="true" filterBy="#{student.firstName}" headerText="#{Message['label.firstname']}" sortBy="#{student.firstName}" filterMatchMode="contains">
 		            <h:outputText value="#{student.firstName}" />
 		        </p:column>
 		        
-   		        <p:column headerText="#{Message['label.lastname']}">
+   		        <p:column filterBy="#{student.lastName}" headerText="#{Message['label.lastname']}" sortBy="#{student.lastName}" filterMatchMode="contains">
 		            <h:outputText value="#{student.lastName}" />
 		        </p:column>
 		        
-		      	<p:column headerText="#{Message['label.address']}">
+		      	<p:column filterBy="#{student.address}" headerText="#{Message['label.address']}" sortBy="#{student.address}" filterMatchMode="contains">
 		            <h:outputText value="#{student.address}" />
 		        </p:column>
 		      
