@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/templates/application.xhtml">
+                
+                
+	<ui:define name="title"><h:outputText value="Classes"/></ui:define>
+	
+	
+	<ui:define name="header">
+		<h4><h:outputText value="Classes"/></h4>
+	</ui:define>
+	
+	
+	<ui:define name="content">		
+		
+		<h:form>
+			<p:growl id="msgs" showDetail="true" />
+			<p:messages id="messages" globalOnly="true"></p:messages>
+ 
+		    <h:panelGrid id="regPanelGrid" cellspacing="8" columns="3">
+					
+					<h:panelGroup>
+						<h:outputLabel value="#{Message['label.name']} :"></h:outputLabel>
+						<h:outputText style="color:red;" value="*"></h:outputText>
+					</h:panelGroup>
+					
+					<p:inputText id="name" required="true" value="#{entity.name}" label="#{Message['label.name']}" title="#{Message['label.name']}">
+						<f:validateLength minimum="2" ></f:validateLength>
+						<p:ajax event="keyup" update="nameMsg" listener="#{classService.checkAvailable}" global="false"/>
+					</p:inputText>
+					<h:panelGroup>
+						<p:message id="nameMsg" for="name"/>
+						<p:tooltip for="name" styleClass="tooltip" showEvent="focus" hideEvent="blur"></p:tooltip>
+					</h:panelGroup>
+					
+					<p:commandButton action="cancel" immediate="true" ajax="false" icon="ui-icon-arrowreturnthick-1-w" value="#{Message['button.cancel']}"></p:commandButton>
+					<p:commandButton action="confirm" update="regPanelGrid, messages" icon="ui-icon-check" value="#{Message['button.save']}"></p:commandButton>
+		   
+		    </h:panelGrid>
+		    
+		</h:form>
+		
+		<h:form>
+			
+		    <p:dataTable var="aClass" value="#{dtClassesView.classes}" 
+		    			 widgetVar="classesTable" rows="10"
+                         paginator="true"
+                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         rowsPerPageTemplate="5,10,15"
+		                 emptyMessage="No class found with given criteria" 
+		                 filteredValue="#{dtClassesView.filteredClasses}">
+
+				<f:facet name="header">
+		            <p:outputPanel style="margin:5px 0;">
+		                <h:outputText value="Search all fields:"/>
+		                <p:inputText id="globalFilter" onkeyup="PF('classesTable').filter()" style="width:200px;" placeholder="Enter keyword"/>
+		            </p:outputPanel>
+		        </f:facet>
+ 
+		        <p:column filterBy="#{aClass.id}" headerText="Id" sortBy="#{aClass.id}">
+		            <h:outputText value="#{aClass.id}" />
+		        </p:column>
+		 
+		        <p:column filterBy="#{aClass.name}" headerText="#{Message['label.class']}" sortBy="#{aClass.name}" filterMatchMode="contains">
+		            <h:outputText value="#{aClass.name}" />
+		        </p:column>
+		      
+		    </p:dataTable>
+		</h:form>
+		
+	</ui:define>
+                
+                
+</ui:composition>

@@ -24,6 +24,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import com.yunus.org.dao.UserDao;
 import com.yunus.org.domain.UserEntity;
 import com.yunus.org.services.UserService;
+import com.yunus.org.ui.utils.UIUtils;
 
 /**
  * Service providing service methods to 
@@ -44,17 +45,17 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 	public boolean createUser(UserEntity userEntity) {
 		
 		if (!userDao.checkAvailable(userEntity.getUserName())) {
-			FacesMessage message = constructErrorMessage(String.format(getMessageBundle().getString("userExistsMsg"), 
+			FacesMessage message = UIUtils.constructErrorMessage(String.format(UIUtils.getMessageBundle().getString("message.already-exists"), 
 					userEntity.getUserName()), null);
-			getFacesContext().addMessage(null, message);
+			UIUtils.getFacesContext().addMessage(null, message);
 			return false;
 		}
 		
 		try {
 			userDao.save(userEntity);			
 		} catch (Exception e) {
-			FacesMessage message = constructFatalMessage(e.getMessage(), null);
-			getFacesContext().addMessage(null, message);
+			FacesMessage message = UIUtils.constructFatalMessage(e.getMessage(), null);
+			UIUtils.getFacesContext().addMessage(null, message);
 		}
 		
 		return true;
@@ -82,7 +83,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 		UserEntity user = userDao.loadUserByUserName(userName);
 		
 		if (user == null) {
-			throw new UsernameNotFoundException(String.format(getMessageBundle().getString("badCredentials"), userName));
+			throw new UsernameNotFoundException(String.format(UIUtils.getMessageBundle().getString("badCredentials"), userName));
 		}
 		
 		Collection<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
@@ -98,32 +99,6 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 		return userDao.loadUserByUserName(userName);
 	}
 
-	protected FacesMessage constructErrorMessage(String message, String detail) {
-		return new FacesMessage(FacesMessage.SEVERITY_ERROR, message, detail);
-	}
-	
-	protected FacesMessage constructInfoMessage(String message, String detail) {
-		return new FacesMessage(FacesMessage.SEVERITY_INFO, message, detail);
-	}
-	
-	protected FacesMessage constructFatalMessage(String message, String detail) {
-		return new FacesMessage(FacesMessage.SEVERITY_FATAL, message, detail);
-	}
-	
-	protected FacesContext getFacesContext() {
-		return FacesContext.getCurrentInstance();
-	}
-	
-	protected ResourceBundle getMessageBundle() {
-		
-		Locale local = new Locale("az", "AZ");
-		ResourceBundle bundle = ResourceBundle.getBundle("message-labels", local);
-		
-		return bundle;
-	}
-	
-	
-
 	/**
 	 * 
 	 */
@@ -136,11 +111,8 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 		boolean available = userDao.checkAvailable(value);
 		
 		if (!available) {
-			FacesMessage message = constructErrorMessage(null, String.format(getMessageBundle().getString("userExistsMsg"), value));
-			getFacesContext().addMessage(event.getComponent().getClientId(), message);
-		} else {
-			FacesMessage message = constructInfoMessage(null, String.format(getMessageBundle().getString("userAvailableMsg"), value));
-			getFacesContext().addMessage(event.getComponent().getClientId(), message);
+			FacesMessage message = UIUtils.constructErrorMessage(null, String.format(UIUtils.getMessageBundle().getString("message.already-exists"), value));
+			UIUtils.getFacesContext().addMessage(event.getComponent().getClientId(), message);
 		}
 		
 		return available;
