@@ -51,6 +51,10 @@
 		      	<p:column filterBy="#{student.address}" headerText="#{Message['label.address']}" sortBy="#{student.address}" filterMatchMode="contains">
 		            <h:outputText value="#{student.address}" />
 		        </p:column>
+		        
+		        <p:column filterBy="#{student.birthday}" headerText="#{Message['label.birthday']}" sortBy="#{student.address}" filterMatchMode="contains">
+		            <h:outputText value="#{student.birthday}" />
+		        </p:column>
 		      
 		    </p:dataTable>
 		</h:form>

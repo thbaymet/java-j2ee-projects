@@ -66,6 +66,10 @@
 					</h:panelGroup>
 					
 					
+					<p:outputLabel for="birthday" value="#{Message['label.birthday']} :" />
+        			<p:calendar id="birthday" value="#{student.birthday}" navigator="true" pattern="yyyy-MMM-dd" />
+ 					<p:outputLabel for="birthday" value="" />
+					
 					
 					<h:panelGroup>
 						<h:outputLabel value="#{Message['label.type']} :"></h:outputLabel>
@@ -84,6 +88,7 @@
 						<p:message id="typeMsg" for="type"/>
 						<p:tooltip for="type" styleClass="tooltip" showEvent="focus" hideEvent="blur"></p:tooltip>
 					</h:panelGroup>
+					
 					
 					
 					<p:commandButton action="cancel" immediate="true" ajax="false" icon="ui-icon-arrowreturnthick-1-w" value="#{Message['button.cancel']}"></p:commandButton>
