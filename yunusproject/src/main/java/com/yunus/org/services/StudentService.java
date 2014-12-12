@@ -13,11 +13,11 @@ import com.yunus.org.domain.StudentEntity;
  */
 public interface StudentService {
 	
-	boolean createStudent(StudentEntity entity);
+	boolean create(StudentEntity entity);
 	
-	boolean updateStudent(StudentEntity entity);
+	boolean update(StudentEntity entity);
 	
-	boolean deleteStudent(StudentEntity entity);
+	boolean delete(StudentEntity entity);
 	
 	List<StudentEntity> list();
 
