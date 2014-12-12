@@ -21,8 +21,13 @@
 	
 		<h:form>
 			
-		    <p:dataTable var="student" value="#{dtStudentsView.students}" widgetVar="studentsTable"
-		                 emptyMessage="No student found with given criteria" filteredValue="#{dtStudentsView.filteredStudents}">
+		    <p:dataTable var="student" value="#{dtStudentsView.students}" 
+		    			 widgetVar="studentsTable" rows="10"
+                         paginator="true"
+                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         rowsPerPageTemplate="5,10,15"
+		                 emptyMessage="No student found with given criteria" 
+		                 filteredValue="#{dtStudentsView.filteredStudents}">
 
 				<f:facet name="header">
 		            <p:outputPanel style="margin:5px 0;">

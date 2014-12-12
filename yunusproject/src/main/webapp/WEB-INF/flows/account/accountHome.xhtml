@@ -7,18 +7,12 @@
                 xmlns:p="http://primefaces.org/ui"
                 template="/WEB-INF/templates/application.xhtml">
                 
-	<ui:define name="title"><h:outputText value="My Account Home"/></ui:define>
-	<ui:define name="header"><h1><h:outputText value="My Account home"/></h1></ui:define>
+	<ui:define name="title"><h:outputText value="Account Home"/></ui:define>
+	<ui:define name="header"><h4><h:outputText value="Your account home page"/></h4></ui:define>
 
 	<ui:define name="content">
 	
-		<f:metadata>
-			<f:event listener="#{uiUtils.greetOnViewLoad}" type="postAddToView" update="growlMessages"></f:event>
-			<f:attribute name="firstName" value="#{user.firstName}"></f:attribute>
-			<f:attribute name="lastName" value="#{user.lastName}"></f:attribute>
-		</f:metadata>
-		
-		<h1>Account for #{user.firstName} #{user.lastName}</h1>
+		<p>Account for #{user.firstName} #{user.lastName}</p>
 		
 	</ui:define>
 

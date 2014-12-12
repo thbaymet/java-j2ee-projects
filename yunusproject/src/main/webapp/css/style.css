@@ -25,6 +25,12 @@ body {
 	border-top: 1px solid black;
 }
 
+.menu {
+	padding: 0 .9em;
+	border-right: 1px solid #000;
+	text-decoration: underline;
+}
+
 #footer address {
 	font-style: normal;
 	margin-top: 0.5em;
