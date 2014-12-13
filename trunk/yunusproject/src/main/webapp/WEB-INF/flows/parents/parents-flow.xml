@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow xmlns="http://www.springframework.org/schema/webflow"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/webflow
+        http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd" >
+	
+	<!-- 
+	<secured attributes="ROLE_USER"/>
+	-->
+	<var name="entity" class="com.yunus.org.domain.ParentEntity"/>
+	
+	<view-state id="welcome" view="parents.xhtml" model="entity">
+		<transition on="cancel" to="finish"></transition>
+		<transition on="confirm" to="comeBack">
+			<evaluate expression="parentService.create(entity)"></evaluate>
+		</transition>
+	</view-state>
+
+	<end-state id="finish" view="externalRedirect:account"></end-state>
+	<end-state id="comeBack" view="externalRedirect:parents"></end-state>
+	
+</flow>

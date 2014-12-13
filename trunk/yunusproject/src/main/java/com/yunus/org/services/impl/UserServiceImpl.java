@@ -5,11 +5,7 @@ package com.yunus.org.services.impl;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Locale;
-import java.util.ResourceBundle;
-
 import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
 import javax.faces.event.AjaxBehaviorEvent;
 
 import org.apache.log4j.Logger;

@@ -14,9 +14,7 @@ import javax.faces.bean.ViewScoped;
 import org.apache.log4j.Logger;
 
 import com.yunus.org.domain.ClassEntity;
-import com.yunus.org.domain.StudentEntity;
 import com.yunus.org.services.ClassService;
-import com.yunus.org.services.StudentService;
 import com.yunus.org.services.impl.UserServiceImpl;
 
 /**
