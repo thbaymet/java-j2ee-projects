@@ -13,6 +13,7 @@
 	<bean id="studentDao" class="com.yunus.org.dao.StudentJpaDao" />
 	<bean id="teacherDao" class="com.yunus.org.dao.TeacherJpaDao"/>
 	<bean id="classDao" class="com.yunus.org.dao.ClassJpaDao"/>
+	<bean id="parentDao" class="com.yunus.org.dao.ParentJpaDao"/>
 
 
 	<!-- Services declarations -->
@@ -28,7 +29,10 @@
 	<bean id="classService" class="com.yunus.org.services.impl.ClassServiceImpl">
 		<property name="classDao" ref="classDao"></property>
 	</bean>
-
+	<bean id="parentService" class="com.yunus.org.services.impl.ParentServiceImpl">
+		<property name="parentDao" ref="parentDao"></property>
+	</bean>
+	
 
 	<bean id="userAuthenticationProviderService"
 		class="com.yunus.org.services.impl.UserAuthenticationProviderServiceImpl">

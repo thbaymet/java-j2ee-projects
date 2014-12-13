@@ -1,0 +1,69 @@
+/**
+ * 
+ */
+package com.yunus.org.domain;
+
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+import com.yunus.org.commons.domain.BaseEntity;
+
+/**
+ * @author BAYRAMOV Matin
+ *
+ */
+@Entity
+@Table(name="mb_parent")
+public class ParentEntity extends BaseEntity {
+
+	private static final long serialVersionUID = -4739644966336621051L;
+	
+	private String firstName;
+	
+	private String lastName;
+	
+	private String address;
+
+	/**
+	 * @return the firstName
+	 */
+	public String getFirstName() {
+		return firstName;
+	}
+
+	/**
+	 * @param firstName the firstName to set
+	 */
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	/**
+	 * @return the lastName
+	 */
+	public String getLastName() {
+		return lastName;
+	}
+
+	/**
+	 * @param lastName the lastName to set
+	 */
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	/**
+	 * @return the address
+	 */
+	public String getAddress() {
+		return address;
+	}
+
+	/**
+	 * @param address the address to set
+	 */
+	public void setAddress(String address) {
+		this.address = address;
+	}
+	
+}

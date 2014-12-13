@@ -10,6 +10,7 @@
 		<class>com.yunus.org.domain.StudentEntity</class>
 		<class>com.yunus.org.domain.TeacherEntity</class>
 		<class>com.yunus.org.domain.ClassEntity</class>
+		<class>com.yunus.org.domain.ParentEntity</class>
 	</persistence-unit>
 
 </persistence>
