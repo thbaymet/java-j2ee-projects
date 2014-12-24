@@ -21,6 +21,7 @@ import java.util.List;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.junit.Test;
 
 import com.baymet.dolu.domain.Address;
 import com.baymet.dolu.domain.Course;
@@ -34,9 +35,11 @@ import com.baymet.dolu.util.HibernateUtil;
  * @author BAYRAMOV Matin
  *
  */
+
 public class HibernateTest {
 	
-	public static void main(String[] args) {
+	@Test
+	public void test() {
         
 		Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
@@ -87,13 +90,13 @@ public class HibernateTest {
         
     }
 	
-	public static Session beginGetSession() {
+	public Session beginGetSession() {
 		Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
         return session;
 	}
 	
-	public static <T> List<T> castList(Class<? extends T> clazz, Collection<?> c) {
+	public <T> List<T> castList(Class<? extends T> clazz, Collection<?> c) {
 	    List<T> r = new ArrayList<T>(c.size());
 	    for(Object o: c)
 	      r.add(clazz.cast(o));
