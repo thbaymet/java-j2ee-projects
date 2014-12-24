@@ -10,5 +10,9 @@
 		</id>
 		<property name="name" column="NAME"/>
 		<property name="description" column="DESCRIPTION"/>
+		<set name="students" cascade="save-update" table="STUDENT_COURSES">
+			<key column="course_id"></key>
+			<many-to-many column="student_id" class="Student"></many-to-many>
+		</set>
 	</class>
 </hibernate-mapping>

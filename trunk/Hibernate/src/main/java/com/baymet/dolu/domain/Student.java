@@ -35,7 +35,7 @@ public class Student {
 	
 	private Address address;
 	
-	private Set<Course> courses = new HashSet<Course>(0);
+	private Set<Course> courses;
 	
 	public Student() {
 		super();

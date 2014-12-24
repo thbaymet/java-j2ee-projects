@@ -17,7 +17,9 @@ package com.baymet.dolu.main;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -67,6 +69,11 @@ public class HibernateTest {
 
 		sub0.setCourse(course);
 		sub1.setCourse(course);
+		
+		Set<Student> students = new HashSet<Student>();
+		students.add(student);
+		
+		course.setStudents(students);
         
       
         session.getTransaction().commit();
