@@ -15,6 +15,8 @@
  */
 package com.baymet.dolu.main;
 
+import java.math.BigInteger;
+import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
@@ -40,11 +42,12 @@ import com.baymet.dolu.util.HibernateUtil;
 
 public class HibernateTest {
 	
+	
 	@Test
 	public void test() {
         
 		Session session = HibernateUtil.getSessionFactory().openSession();
-        session.beginTransaction();
+		session.beginTransaction();
  
         Department department = new Department("java");
         session.save(department);
@@ -56,26 +59,27 @@ public class HibernateTest {
         Student student = new Student("BAYRAMOV", "Matin");
         student.setAddress(address);
         session.save(address);
-        session.save(student);
         
         //=====================
-		Course course = new Course("History", "History course");
 		Subject sub0 = new Subject("Empire Ottoman", "The Ottoman Empire");
 		Subject sub1 = new Subject("Saladin", "Saladin with the crusades");
-		
 		session.save(sub0);
 		session.save(sub1);
-		session.save(course);
-
+		
+		Course course = new Course("History", "History course");
 		sub0.setCourse(course);
 		sub1.setCourse(course);
+		session.save(course);
 		
 		Set<Student> students = new HashSet<Student>();
 		students.add(student);
-		
 		course.setStudents(students);
-        
+		
+//		Set<Course> courses = new HashSet<Course>();
+//		courses.add(course);
+//		student.setCourses(courses);
       
+        session.save(student);
         session.getTransaction().commit();
 
         Query q = session.createQuery("From Employee ");
@@ -95,15 +99,41 @@ public class HibernateTest {
         	System.out.println("next student: "+next);
         }
         
+        q = session.createQuery("from Course");
+        List<Course> courses = castList(Course.class, q.list());
+        System.out.println("num of courses : "+courses.size());
+        for (Course next : courses) {
+        	System.out.println("next course : "+next);
+        	System.out.println("student size: "+next.getStudents().size());
+        	Set<Student> members = next.getStudents();
+        	for (Student s : members) {
+        		System.out.println("student : "+s.toString());
+        	}
+        }
+        
     }
 	
-	public Session beginGetSession() {
+	public static Student createRandomStudent() {
+		SecureRandom random = new SecureRandom();
+		String randFirstName = new BigInteger(130, random).toString(32);
+		String randLastName = new BigInteger(130, random).toString(32);
+		return new Student(randFirstName, randLastName);
+	}
+	
+	public static Course createRandomCourse() {
+		SecureRandom random = new SecureRandom();
+		String name = new BigInteger(130, random).toString(32);
+		String description = new BigInteger(130, random).toString(32);
+		return new Course(name, description);
+	}
+	
+	public static Session beginGetSession() {
 		Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
         return session;
 	}
 	
-	public <T> List<T> castList(Class<? extends T> clazz, Collection<?> c) {
+	public static <T> List<T> castList(Class<? extends T> clazz, Collection<?> c) {
 	    List<T> r = new ArrayList<T>(c.size());
 	    for(Object o: c)
 	      r.add(clazz.cast(o));
