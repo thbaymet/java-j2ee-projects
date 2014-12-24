@@ -16,7 +16,6 @@
 package com.baymet.dolu.domain;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -34,7 +33,7 @@ public class Course {
 	
 	private List<Subject> subjects = new ArrayList<Subject>();
 	
-	private Set<Student> students = new HashSet<Student>(0);
+	private Set<Student> students;
 	
 	public Course() {
 		super();
