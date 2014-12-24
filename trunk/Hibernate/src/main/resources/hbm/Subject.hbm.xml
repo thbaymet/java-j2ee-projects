@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.baymet.dolu.domain">
+	<class name="Subject" table="SUBJECTS">
+		<id name="id" column="ID" type="long">
+			<generator class="native"/>
+		</id>
+		<property name="name" column="NAME"/>
+		<property name="description" column="DESCRIPTION"></property>
+		<many-to-one name="course" column="COURSE_ID" class="Course"/>
+	</class>
+</hibernate-mapping>
