@@ -1,0 +1,1 @@
+Simple J2EE projects: Hibernate, Spring frameworks.
